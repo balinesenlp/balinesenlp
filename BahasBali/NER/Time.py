@@ -20,7 +20,10 @@ notDatePrefix = ['matuuh', 'mayusa', 'no', 'nomer', 'pergub', 'perda']
 
 # s
 def preprocessing(text):
-    text = text.replace('é', 'e')
+    try:
+        text = text.replace('é', 'e')
+    except:
+        pass
     text = text.lower()
     text = nltk.tokenize.word_tokenize(text)
     symbols = "',!\"#$%&()*+.:;<=>?@[\]^_`{|}~\n"

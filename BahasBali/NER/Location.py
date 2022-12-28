@@ -22,6 +22,8 @@ prepotitionPrefixs = ['ring', 'di', 'saking', 'ka', 'ke', 'uli', 'Ring', 'Di', '
 directionssuffix = ['Utara', 'Timur', 'Selatan', 'Barat', 'Kaja', 'Kangin', 'Kelod', 'Kauh', 'Tenggara', 'Tengah', 'Loka', 'Kulon']
 directionprefix = ['arep', 'batan', 'badauh', 'tengahing', 'ajeng', 'madianing', 'pusat', 'ungkur', 'muncuk']
 
+nameEntity = ['men','dadong','dong','nang','pan','buk']
+
 
 def listDocuments():
     dokumenList = os.listdir('documents')
@@ -119,6 +121,18 @@ def ruleBased(textPrep, locations):
                         temp.append(textPrep[j])
                     elif textPrep[j] == 'de':
                         temp.append(textPrep[j])
+                    elif textPrep[j].lower() in [x.lower() for x in prefixsLocation]:
+                        temp.append(textPrep[j])
+                        if textPrep[j+1].lower in nameEntity:
+                            temp.append(textPrep[j+1])
+                            if textPrep[j+2] not in punctuation:
+                                temp.append(textPrep[j+2])
+                                j+=2
+                            else:
+                                j+=1
+                        elif textPrep[j+1] not in punctuation:
+                            temp.append(textPrep[j+1])
+                            j+=1
                     else:
                         if textPrep[j] == 'diri':
                             print(temp[-1])
@@ -213,7 +227,6 @@ def ner_location(sentences):
     text = sentences
     locations = []
     textPrep = preprocessing(text)
-    print(textPrep)
     locations = ruleBased(textPrep, locations)
     same_place=[]
     locations = list(dict.fromkeys(locations))
