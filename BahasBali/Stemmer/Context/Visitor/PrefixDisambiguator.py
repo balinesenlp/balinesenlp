@@ -1,4 +1,4 @@
-from static.py.library.BahasBali.Stemmer.Context.Visitor.AbstractDisambiguatePrefixRule import AbstractDisambiguatePrefixRule
+from BahasBali.Stemmer.Context.Visitor.AbstractDisambiguatePrefixRule import AbstractDisambiguatePrefixRule
 
 class PrefixDisambiguator(AbstractDisambiguatePrefixRule):
     """description of class"""

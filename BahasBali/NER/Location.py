@@ -17,12 +17,12 @@ notLocation = ['Sang', 'Hyang', 'Ida', 'Sanghyang', 'Dewa', 'Dewi', 'Tuhan', 'Ba
 area = ['wewidangan', 'widang', 'gumi', 'wilayah', 'bongkol', 'jagat', 'sawengkon', 'wawengkon']
 prefixsLocation = ['Gunung', 'Danau', 'Danu', 'Kebun', 'Pasih', 'Segara','Peken', 'Desa', 'Kelurahan', 'Kecamatan', 'Kabupaten', 'Kota', 'Provinsi', 
 'Propinsi', 'Pulau', 'Pulo', 'Nusa', 'Tanjung', 'Pasisi', 'Pura', 'Umah', 'Museum', 'Bandara', 'Kompleks', 'Jalan', 'Gedong', 'Setra', 'Taman', 'Candi',
-'Kerajaan', 'Krajan', 'Kesultanan', 'Jembatan', 'Pelabuhan', 'Pelabuan', 'Pesisi', 'Tukad']
+'Kerajaan', 'Krajan', 'Kesultanan', 'Jembatan', 'Pelabuhan', 'Pelabuan', 'Pesisi', 'Tukad','Alas']
 prepotitionPrefixs = ['ring', 'di', 'saking', 'ka', 'ke', 'uli', 'Ring', 'Di', 'Saking', 'Ka', 'Ke', 'Uli']
 directionssuffix = ['Utara', 'Timur', 'Selatan', 'Barat', 'Kaja', 'Kangin', 'Kelod', 'Kauh', 'Tenggara', 'Tengah', 'Loka', 'Kulon']
 directionprefix = ['arep', 'batan', 'badauh', 'tengahing', 'ajeng', 'madianing', 'pusat', 'ungkur', 'muncuk']
 
-nameEntity = ['men','dadong','dong','nang','pan','buk']
+nameEntity = ['men','dadong','dong','nang','pan','buk','rerama']
 
 
 def listDocuments():
@@ -121,18 +121,15 @@ def ruleBased(textPrep, locations):
                         temp.append(textPrep[j])
                     elif textPrep[j] == 'de':
                         temp.append(textPrep[j])
-                    elif textPrep[j].lower() in [x.lower() for x in prefixsLocation]:
+                    elif min([nltk.edit_distance(textPrep[j].lower(), x.lower().strip()) for x in prefixsLocation])<2:
                         temp.append(textPrep[j])
-                        if textPrep[j+1].lower in nameEntity:
+                        if min([nltk.edit_distance(textPrep[j+1].lower(), x.lower().strip()) for x in nameEntity])<3:
                             temp.append(textPrep[j+1])
                             if textPrep[j+2] not in punctuation:
                                 temp.append(textPrep[j+2])
                                 j+=2
                             else:
                                 j+=1
-                        elif textPrep[j+1] not in punctuation:
-                            temp.append(textPrep[j+1])
-                            j+=1
                     else:
                         if textPrep[j] == 'diri':
                             print(temp[-1])

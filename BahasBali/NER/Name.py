@@ -18,17 +18,19 @@ punc = '''!()-[]{};:.'"”\<>/?@#$%^&*_~'''
 gender = ['I', 'Ni', 'Bagus', 'Ayu']
 urutankelahiran = ['Putu', 'Gede', 'Wayan', 'Luh', 'Made',
                    'Madé', 'Kadek', 'Nengah', 'Nyoman', 'Komang', 'Ketut']
-wangsa = ['Ida', 'Anak', 'Cokorda', 'Tjokorda', 'Gusti',
-          'Dewa', 'Sang', 'Ngakan', 'Bagus', 'Desak', 'Jero', 'Anake', 'Ratu']
+wangsa = ['Ida', 'Anak', 'Cokorda', 'Tjokorda', 'Gusti','Prabu', 'Prabhu','Maharaja','Raja','Bhagawan','Raden','Sri',
+          'Dedari','Betara','Betari',
+          'Dewa', 'Sang', 'Ngakan', 'Bagus', 'Desak', 'Jero', 'Anake', 'Ratu','Bhatara','Bhatari','Dewi','Anak','Agung']
 singkatan = ['IB', 'IA', 'Gde', 'Gd', 'Cok', 'AA', 'Gst', 'Dw', 'Ngkn', 'Dsk.', 'W',
-             'Wy', 'Wyn', 'Pt', 'Ngh', 'Md', 'N', 'Nymn', 'Ny', 'Kt', 'Dayu', 'Pan', 'Men', 'Nang', 'Bapa', 'Kak', 'Dong', 'Dadong']
+             'Wy', 'Wyn', 'Pt', 'Ngh', 'Md', 'N', 'Nymn', 'Ny', 'Kt', 'Dayu', 'Pan', 'Men', 'Nang', 'Kak', 'Dong']
 pengenalan = ['madan', 'mawasta', 'mewasta',
               'maparab', 'mapesengan', 'kaparabin']
+namaganti = ['Bapa','Bapak',"Meme","Memek",'Dadong',"Pekak",'Bibi','Memen','Paman']
 
 namadepan.append(gender)
 namadepan.append(urutankelahiran)
 namadepan.append(wangsa)
-namadepan.append(singkatan)
+namadepan.append(singkatan+namaganti)
 path = os.path.dirname(__file__)
 vocab_path = os.path.dirname(__file__) + "/data/BaliVocab.txt"
 with open(vocab_path, 'r') as s_file:
@@ -75,8 +77,10 @@ def ner_name(sentences):
                     except:
                         continue
                 continue
+
             elif ([b for b in listStop if a == b] or [b for b in listStop if a.lower() == b] and rule == 0):
                 continue
+
             if (a in pengenalan):
                 temp = []
                 for c in range((gindex+1), (len(kalimat[sindex]))):
@@ -89,6 +93,7 @@ def ner_name(sentences):
                         continue
                 names.append(temp)
                 continue
+
             try:
                 if(a[0].isupper()):
                     if([b for b in sanskerta if a == b] or [b for b in sanskerta if a.lower() == b]):
@@ -126,3 +131,17 @@ def ner_name(sentences):
     name = ', '.join(map(str, output))
     name = "Nama : " + name
     return output
+
+def delCommonName(listNama):
+    checknama=[]
+    for i in namadepan:
+        checknama.extend(i)
+    newList = []
+    for l in listNama:
+        word = l.split(" ")
+        newword = []
+        for w in word:
+            if w not in checknama:
+              newword.append(w)
+        newList.append(" ".join(newword))
+    return newList

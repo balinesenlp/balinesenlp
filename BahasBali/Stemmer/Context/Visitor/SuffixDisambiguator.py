@@ -1,4 +1,4 @@
-from static.py.library.BahasBali.Stemmer.Context.Visitor.AbstractDisambiguateSuffixRule import AbstractDisambiguateSuffixRule
+from BahasBali.Stemmer.Context.Visitor.AbstractDisambiguateSuffixRule import AbstractDisambiguateSuffixRule
 
 class SuffixDisambiguator(AbstractDisambiguateSuffixRule):
     """description of class"""

@@ -1,5 +1,5 @@
 import re
-from static.py.library.BahasBali.Stemmer.Context.Removal import Removal
+from BahasBali.Stemmer.Context.Removal import Removal
 
 class AbstractDisambiguateSuffixRule(object):
     """description of class"""
