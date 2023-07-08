@@ -46,9 +46,7 @@ def preprocessing(text):
 
 def rule(txtPrep, pWaktu):
     for index, i in enumerate(txtPrep):
-        print(i)
         if i in singglemean:
-            print("HASIAAAAAAAAAAAAAAAAAAAA")
             pWaktu.append(i)
         # format tanggal Hari 28/08/2019 atau Hari 28-9-2019 atau tgl tok
         if '/' in i or '-' in i:
@@ -304,7 +302,6 @@ def rule(txtPrep, pWaktu):
 def ner_time(sentences):
     string = sentences
     prep = preprocessing(string)
-    print(prep)
     pWaktu = []
     pWaktu = rule(prep, pWaktu)
     # print(pWaktu)

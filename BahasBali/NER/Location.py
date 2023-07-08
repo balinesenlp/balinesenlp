@@ -22,7 +22,7 @@ prepotitionPrefixs = ['ring', 'di', 'saking', 'ka', 'ke', 'uli', 'Ring', 'Di', '
 directionssuffix = ['Utara', 'Timur', 'Selatan', 'Barat', 'Kaja', 'Kangin', 'Kelod', 'Kauh', 'Tenggara', 'Tengah', 'Loka', 'Kulon']
 directionprefix = ['arep', 'batan', 'badauh', 'tengahing', 'ajeng', 'madianing', 'pusat', 'ungkur', 'muncuk']
 
-nameEntity = ['men','dadong','dong','nang','pan','buk','rerama']
+nameEntity = ['men','dadong','dong','nang','pan','buk','rerama','ring']
 
 
 def listDocuments():
