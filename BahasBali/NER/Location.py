@@ -132,7 +132,6 @@ def ruleBased(textPrep, locations):
                                 j+=1
                     else:
                         if textPrep[j] == 'diri':
-                            print(temp[-1])
                             del temp[-1]
                         break
             if(temp):          
@@ -141,7 +140,6 @@ def ruleBased(textPrep, locations):
         # aturan pake kata depan lokasi
         if i in prefixsLocation:
             temp = []
-            print(i)
             if i is textPrep[0]: #Gunung Agung
                 if textPrep[index+1] not in punctuation and (textPrep[index+1].istitle() or textPrep[index+1].isdigit()): #and not textPrep[index+1].isdigit()
                     temp.append(i)
